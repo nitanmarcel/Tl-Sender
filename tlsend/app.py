@@ -4,11 +4,11 @@ import os
 from typing import Union
 from telethon import TelegramClient
 
-session_path = '' # the path where to save the session file
+session_path = '' # the path where to save the session file (ex: home/ubuntu/)
 api_id = 0 # api_id
-api_hash = '' # api_hash
+api_hash = ''
 
-client = TelegramClient('/home/marcel/.tlsender', api_id=api_id, api_hash=api_hash)
+client = TelegramClient(session_path + '.tlsend', api_id=api_id, api_hash=api_hash)
 
 
 def get_file(file_path):
@@ -73,11 +73,11 @@ def start(awaitable):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-d', '--force_document', action='store_true')
-    parser.add_argument('-r', '--recursive', action='store_true')
-    parser.add_argument('-f', '--file', nargs='+')
-    parser.add_argument('-c', '--chat')
-    parser.add_argument('-l', '--list', action='store_true')
+    parser.add_argument('-f', '--file', nargs='+', help='File(s) to send. Allows usage of cp/mv syntax for file selections (ex: *, *.txt)')
+    parser.add_argument('-r', '--recursive', action='store_true', help='Send directories recursively')
+    parser.add_argument('-d', '--force_document', action='store_true', help='Force sending as document')
+    parser.add_argument('-c', '--chat', help='Username/ID of chat to send file(s) to')
+    parser.add_argument('-l', '--list', action='store_true', help='Get a list of all chats in format Title/FirstName - Username/ID')
     args = parser.parse_args()
     force_doc = False
 
