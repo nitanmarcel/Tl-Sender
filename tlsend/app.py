@@ -2,13 +2,19 @@ import argparse
 import glob
 import os
 from typing import Union
+from pathlib import Path
 from telethon import TelegramClient
 
-session_path = '' # the path where to save the session file (ex: home/ubuntu/)
-api_id = 0 # api_id
-api_hash = ''
 
-client = TelegramClient(session_path + '.tlsend', api_id=api_id, api_hash=api_hash)
+API_ID = os.environ.get('tl_api_id', None)
+API_HASH = os.environ.get('tl_api_hash', None)
+
+if not API_ID:
+    quit('your api id can\'t be none. Set it using `export tl_api_id=your_api_id')
+if not API_HASH:
+    quit('your api hash can\'t be none. Set it using `export tl_api_hash=your_api_hash')
+
+client = TelegramClient(str(Path.home()) + '/.tlsend', api_id=int(API_ID), api_hash=API_HASH)
 
 
 def get_file(file_path):
