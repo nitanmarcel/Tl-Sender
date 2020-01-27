@@ -6,8 +6,15 @@ Small personal app to send files from my pc to a telegram chat
 ```bash
 git pull https://github.com/nitanmarcel/Tl-Sender/
 cd Tl-Sender/
-# Open tlsend/app.py and edit the required values noted with comments
 python3 setup.py install
+```
+
+
+## Configure
+
+```bash
+export tl_api_id="your api id"0
+export tl_api_hash="your api hash"
 ```
 
 ## Usage:
