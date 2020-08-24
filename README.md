@@ -13,7 +13,7 @@ python3 setup.py install
 ## Configure
 
 ```bash
-export tl_api_id="your api id"0
+export tl_api_id="your api id"
 export tl_api_hash="your api hash"
 ```
 
